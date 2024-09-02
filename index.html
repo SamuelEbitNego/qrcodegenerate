@@ -3,41 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QR Code Generator</title>
+    <title>Generator Kode QR Keren</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
         body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #212121 0%, #764ba2 100%);
+            margin: 0;
+            padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
+            min-height: 100vh;
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 90%;
+            width: 400px;
+        }
+        h1 {
+            color: #4a4a4a;
+            margin-bottom: 1.5rem;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 0.8rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        button {
+            background-color: #667eea;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #764ba2;
         }
         #qr-code {
-            margin-top: 20px;
+            margin-top: 2rem;
+            display: flex;
+            justify-content: center;
+        }
+        @media (max-width: 480px) {
+            .container {
+                padding: 1.5rem;
+            }
+            h1 {
+                font-size: 1.5rem;
+            }
+            input[type="text"], button {
+                font-size: 0.9rem;
+            }
         }
     </style>
 </head>
 <body>
-    <div>
-        <h1>QR Code Generator</h1>
-        <input type="text" id="text" placeholder="Enter text to generate QR Code" />
-        <button onclick="generateQRCode()">Generate QR Code</button>
+    <div class="container">
+        <h1>Generator Kode QR Keren</h1>
+        <input type="text" id="text" placeholder="Masukkan teks untuk menghasilkan Kode QR" />
+        <button onclick="generateQRCode()">Hasilkan Kode QR</button>
         <div id="qr-code"></div>
     </div>
 
-    <!-- Pustaka QRCode.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <script>
         function generateQRCode() {
             const text = document.getElementById('text').value;
             if (text) {
-                // Hapus QR code sebelumnya jika ada
                 document.getElementById('qr-code').innerHTML = "";
-                // Generate QR code baru
-                new QRCode(document.getElementById('qr-code'), text);
+                new QRCode(document.getElementById('qr-code'), {
+                    text: text,
+                    width: 200,
+                    height: 200
+                });
             } else {
-                alert("Please enter a text");
+                alert("Silakan masukkan teks");
             }
         }
     </script>
